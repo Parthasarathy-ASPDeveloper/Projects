@@ -1,0 +1,71 @@
+﻿* { 
+	margin: 0; 
+	padding: 0; 
+}
+body { 
+	font: 14px/1.4 Georgia, Serif; 
+}
+#page-wrap {
+	margin: 50px;
+}
+p {
+	margin: 20px 0; 
+}
+table tr:hover td {
+	
+	background: -webkit-gradient(linear, left top, left bottom, from(#D32F2F), to(#D50000));
+	background: -moz-linear-gradient(top,  #D32F2F, #D50000);	
+    background: green;
+    color:white;	
+   
+}
+table a{color:blue;}
+table a:active,
+table a:hover {
+	color: white;
+	text-decoration:underline;
+}
+	/* 
+	Generic Styling, for Desktops/Laptops 
+	*/
+	table { 
+		width: 100%; 
+		border-collapse: collapse; 
+        font-family:'sans-serif','Times New Roman';
+        font-size:12px;
+	}
+	/* Zebra striping */
+	tr:nth-of-type(odd) { 
+		background: #eee; 
+	}
+	th { 
+		background: #333; 
+		color: white; 
+		font-weight: bold; 
+	}
+	td, th { 
+		padding: 6px; 
+		border: 1px solid #ccc; 
+		text-align: left; 
+	}
+    
+ #search{
+            
+            background-image:url("/Resources/search.png");
+            background-position-x: 5px;
+            background-position-y: center;
+            padding-left: 30px;
+            background-repeat: no-repeat;
+            float: right;
+            margin-right: 1%;
+            margin-bottom: 10px;
+             padding:5px 0px 5px 30px;
+            width:200px;
+            border-radius:3px;
+            box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.1);
+            border:solid 1px #123;
+        }
+#search:hover {
+    border: solid 1px blue;
+
+}

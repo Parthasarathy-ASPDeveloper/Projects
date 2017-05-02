@@ -1,0 +1,227 @@
+﻿@model Assets_MVC_.Models.cpuentry16
+
+@{
+    ViewBag.Title = "Create";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h1>Create</h1>
+<small>New CPU Entry</small>
+@section style{
+<link href="~/CustomStyleSheets/style.css" rel="stylesheet" />
+@Styles.Render("~/Content/themes/base/jquery-ui.css")
+}
+@using (Html.BeginForm()) 
+{
+    @Html.AntiForgeryToken()
+    
+    <div class="form-horizontal">
+        <hr />
+        @Html.ValidationSummary(true)
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.asset_id, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.asset_id)
+                @Html.ValidationMessageFor(model => model.asset_id)
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.assetLocation_id, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.assetLocation_id)
+                @Html.ValidationMessageFor(model => model.assetLocation_id)
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.make_id, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.DropDownListFor(model => model.make_id, new SelectList((System.Collections.IEnumerable)ViewData["Make"], "Value", "Text"), "--- Select Make---", new { @class = "chosen-select" })
+                @Html.ValidationMessageFor(model => model.make_id)
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.model_id, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.DropDownListFor(model => model.model_id, new SelectList((System.Collections.IEnumerable)ViewData["model"], "Value", "Text"), "--- Select Model---", new { @class = "chosen-select" })
+                @Html.ValidationMessageFor(model => model.model_id)
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.productnumber, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.productnumber)
+                @Html.ValidationMessageFor(model => model.productnumber)
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.serialnumber, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.serialnumber)
+                @Html.ValidationMessageFor(model => model.serialnumber)
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.configuration, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.configuration)
+                @Html.ValidationMessageFor(model => model.configuration)
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.assetowner, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.DropDownListFor(model => model.assetowner, new SelectList((System.Collections.IEnumerable)ViewData["owner"], "Value", "Text"), "--- Select Owner---", new { @class = "chosen-select" })
+                @Html.ValidationMessageFor(model => model.assetowner)
+            </div>
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(model => model.classification_id, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.DropDownListFor(model => model.classification_id, new SelectList((System.Collections.IEnumerable)ViewData["classification"], "Value", "Text"), "--- Select Classification---", new { @class = "chosen-select" })
+                @Html.ValidationMessageFor(model => model.classification_id)
+            </div>
+        </div>
+
+       
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.warranty, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.DropDownListFor(model => model.warranty, new SelectList((System.Collections.IEnumerable)ViewData["warranty1"], "Value", "Text"), "--- Select warranty---", new { @class = "chosen-select" })
+                @*@Html.EditorFor(model => model.warranty)*@
+                @Html.ValidationMessageFor(model => model.warranty)
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.warrantyupto, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.warrantyupto)
+                @Html.ValidationMessageFor(model => model.warrantyupto)
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.remarks, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.remarks)
+                @Html.ValidationMessageFor(model => model.remarks)
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.active, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.DropDownListFor(model => model.active, new SelectList((System.Collections.IEnumerable)ViewData["active1"], "Value", "Text"), "--- Select Active---", new { @class = "chosen-select" }) 
+                @Html.ValidationMessageFor(model => model.active)
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Create" class="btn btn-default" />
+            </div>
+        </div>
+    </div>
+}
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>
+
+@section Scripts {
+@Scripts.Render("~/bundles/jqueryval")
+@Scripts.Render("~/bundles/jquery")
+@Scripts.Render("~/bundles/jqueryui")
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        $(".chosen-select").chosen({ no_results_text: "Oops, nothing found!" });
+                $("#make_id").on("change", function () {
+
+                    $.ajax(
+                    {
+                        url: '@Url.Action("GetModel", "CPUEntry")',
+                        type: 'POST',
+                        data: "{'make':'" + $(this).val() + "'}",
+                        contentType: 'application/json; charset=utf-8',
+                        success: function (data) {
+
+                            var markup = "<option value='0'>--- Select Model ---</option>";
+                            for (var x = 0; x < data.length; x++) {
+                                markup += "<option value=" + data[x].Value + ">" + data[x].Text + "</option>";
+                            }
+                            $("#model_id").html(markup);
+                            $("#model_id").trigger('chosen:updated');
+                        },
+                        error: function (response) {
+                            alert("error");
+                            alert(response.responseText);
+                        },
+                        failure: function () {
+                            alert("failed");
+                        }
+                    });
+                });
+
+
+                $("#model_id").on("change", function () {
+
+                    $.ajax(
+                    {
+                        url: '@Url.Action("GetConfiguration", "CPUEntry")',
+                        type: 'POST',
+                        data: "{'id':'" + $(this).val() + "'}",
+                        contentType: 'application/json; charset=utf-8',
+                        success: function (data) {
+                            alert(data);
+                            $("#configuration").val(data);
+                        },
+                        error: function (response) {
+                            alert("error");
+                            alert(response.responseText);
+                        },
+                        failure: function () {
+                            alert("failed");
+                        }
+                    });
+                });
+
+
+            $("#ddlUser").on("change", function () {
+                //alert($(this).val());
+                //alert($("#ddlProject").val())
+                $.ajax(
+                {
+                    url: '@Url.Action("GetRoles", "Role")',
+                    type: 'POST',
+                    data: "{'UserId':'" + $(this).attr("value")+ "', '_project':'" + $('#ddlProject').attr("value") +"'}",
+                    contentType: 'application/json; charset=utf-8',
+                    success: function (data) {
+                        var markup = "<option value='0'>--- Select Role ---</option>";
+                        for (var x = 0; x < data.length; x++) {
+                            markup += "<option value=" + data[x].Value + ">" + data[x].Text + "</option>";
+                        }
+                        $("#ddlRole").html(markup).show();
+                    },
+                    error: function (response) {
+                        alert("error");
+                        alert(response.responseText)
+                    },
+                    failure: function () {
+                        alert("failed");
+                    }
+                });
+            });
+            })
+</script>
+
+}

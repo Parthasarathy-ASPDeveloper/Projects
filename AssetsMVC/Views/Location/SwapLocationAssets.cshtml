@@ -1,0 +1,214 @@
+﻿
+@{
+    ViewBag.Title = "SwapLocationAssets";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@section style{
+<style type="text/css">
+    
+    .location-list-font {
+        font-family: 'Aharoni','Cambria','sans-serif';
+        font-size: 15px;
+        font-stretch: expanded;
+        font-variant: small-caps;
+        font-weight: 600;
+        color: rgb(220, 222, 135);
+    }
+    .location-list {
+        background-color: rgba(49, 17, 175, 0.81);
+        padding: 10px 50px;
+        margin: 5px 2px;
+        border-radius:5px;
+        backface-visibility: visible;
+        border: 1px groove red;
+        text-decoration: double;
+        list-style-type: none;
+        text-emphasis: triangle;
+    }
+
+        .location-list:hover {
+            background-color: #FE1001;
+            color: white;
+        }
+    .left-1{
+        float:left;
+
+    }
+    .right-1{
+        float:right;
+    }
+    select {
+        background-color: rgba(197, 191, 191, 0.62);
+        -webkit-appearance: menulist-button;
+        -moz-appearance: button-arrow-down;
+        -webkit-user-select: text;
+        -moz-user-select: text;
+        -webkit-padding-end: 20px;
+        -moz-padding-end: 20px;
+        -webkit-padding-start: 2px;
+        -moz-padding-start: 2px;
+        border: solid 1px #123;
+        /*border-radius: 2px;*/
+        box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.1);
+        font-size: inherit;
+        margin: 0;
+        padding-top: 2px;
+        padding-bottom: 2px;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        width: 200px;
+        max-width: 300px;
+    }
+    option:hover {
+        background-color: #FE1001;
+        color: white;
+    }
+        option {
+        background-color: rgba(49, 17, 175, 0.81);
+        padding: 15px 50px;
+        margin: 5px 2px;
+        border-radius: 5px;
+        backface-visibility: visible;
+        border: 1px groove red;
+        text-decoration: double;
+        list-style-type: none;
+        text-emphasis: triangle;
+
+
+        font-family: 'Aharoni','Cambria','sans-serif';
+        font-size: 15px;
+        font-stretch: expanded;
+        font-variant: small-caps;
+        font-weight: 600;
+        color: rgb(220, 222, 135);
+    }
+    input[type=button] {
+        position: relative;
+        left: 21%;
+        top: 36%;
+        width: 150px;
+        height: 50px;
+        font-size: 20px;
+        font-family: 'Times New Roman';
+    }
+
+</style>
+}
+<h2>Swap &hArr; Location Assets</h2>
+
+@using (Html.BeginForm("SwapLocationAssets", "Location", FormMethod.Post, new { id = "LocationAssets" }))
+{
+    @Html.AntiForgeryToken()
+
+    @*<div class="form-horizontal">*@
+
+        <hr />
+        @Html.ValidationSummary(true)
+
+    @*</div>*@
+        <div class="container">
+            <div class="row">
+                <div class="col-md-4">
+                    <p style="font:bold 20px sans-serif;">Source Location</p>
+          
+                    @Html.ListBox("Source-Location", new SelectList((System.Collections.IEnumerable)ViewData["AssetLocation"], "Value", "Text", ""), new { size = 10, id = "Source-Location", name = "Source-Location", @style = " width: 800px; color: white; font-size:15px;" })
+
+                </div>
+
+
+                <div class="col-md-4" style="position:relative; bottom:40%; height: 200px; margin:20% 20px; background-color: rgba(50, 50, 50, 0.0); background-image:url('../Images/Background.png'); background-position-x:center;background-position-y:center; background-repeat:no-repeat; background-size:contain;">
+                    
+                    <input type="button" name="submit" id="mysubmit" class="btn btn-info " value="Swap" style="" />
+
+                </div>
+
+
+                <div class="col-md-3">
+
+                    <p style="font:bold 20px sans-serif;">Destination Location</p>
+                    @Html.ListBox("Destination-Location", new SelectList((System.Collections.IEnumerable)ViewData["AssetLocation"], "Value", "Text", ""), new { size = 10, id = "Destination-Location", name = "Destination-Location", @style = "width: 1000px; color: white; font-size:15px;" })
+                </div>
+
+                <input type="submit" name="submit" id="submit" class="btn btn-info " value="Test" style="display: none;" />
+                @*<div class="left-1" style="overflow: scroll; max-height: 500px;">
+                <ul class="location-list-font">
+
+                    @foreach (var item in new SelectList((System.Collections.IEnumerable)ViewData["AssetLocation"], "Value", "Text"))
+                    {
+                        <li class="location-list-font location-list" id="@item.Value">@item.Text</li>
+
+                    }
+                </ul>
+
+            </div>
+            <div class="right-1" style="overflow:scroll; max-height:500px;">
+                <ul class="location-list-font">
+
+                    @foreach (var item in new SelectList((System.Collections.IEnumerable)ViewData["AssetLocation"], "Value", "Text"))
+                    {
+                        <li class="location-list-font location-list" id="@item.Value">@item.Text</li>
+
+                    }
+                </ul>
+
+            </div>*@
+            </div>
+            </div>
+}
+@section scripts{
+<script type="text/javascript">
+    $(document).ready(function () {
+        debugger;
+        $('#mysubmit').click(function () {
+            debugger;
+            //if ($('#Source-Location').val() != "" && $('#Destination-Location').val() != "") {
+                //alert($('#Source-Location').val());
+
+                if ($('#Source-Location option:selected').length == 1 || $('#Destination-Location option:selected').length == 1) {
+                    $('#submit').click();
+
+                }
+                else {
+                        bootbox.alert({
+                            message: "Please Choose one/Only one in Location either in Source/Destination",
+                            className: 'bb-alternate-modal'
+                        });
+                    }
+        })
+        })
+
+                        @*$.ajax({
+                            url: '@Url.Action("SwapLocationAssets", "Location")',
+                            type: "POST",
+                            contentType: 'application/json; charset=utf-8',
+                            data: "{'Source':'" + $('#Source-Location').val() + "','Destination': '" + $('#Destination-Location').val() + "'}",
+                            success: function (result) {
+                                alert(result.responseText);
+                            },
+                            error: function (result) {
+                                alert("Error");
+                                alert('Error' + result.responseText);
+                            }
+
+                        });*@
+
+            //}
+
+
+</script>  
+    @{
+    if (ViewBag.Message != null)
+    {
+        <script type="text/javascript">
+            $(document).ready(function () {
+
+                bootbox.alert({
+                    message: "Submitted",
+                    className: 'bb-alternate-modal'
+                });
+            });
+
+        </script>
+    }
+}  
+}

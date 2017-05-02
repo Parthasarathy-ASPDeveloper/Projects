@@ -1,0 +1,6 @@
+﻿@model List<AssetsMVC.Models.Charts>
+
+@{
+    var charts = new Chart(width: 1000, height: 500, theme: ChartTheme.Blue)
+        .AddTitle("Accessory Distribution").AddSeries("Default", chartType: "Column",axisLabel:"Accessory",legend:"Accessory", xValue:Model, xField: "Accessory", yValues: Model, yFields: "TotalEntries").Write();
+}

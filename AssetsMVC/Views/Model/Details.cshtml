@@ -1,0 +1,59 @@
+﻿@model Assets_MVC_.Models.mas_model
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>mas_model</h4>
+	<hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.model)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.model)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.make_id)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.make_id)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.configuration)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.configuration)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.accessoryId)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.accessoryId)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.active)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.active)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.id }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

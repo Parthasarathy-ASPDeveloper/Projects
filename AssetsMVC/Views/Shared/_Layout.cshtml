@@ -1,0 +1,116 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title - Asset Management System - Application</title>
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+    <!-- Bootstrap core CSS -->
+    <link href="@Url.Content("~/css/carousel.css")" rel="stylesheet">
+    @Styles.Render("~/Content/datatables")
+    @Styles.Render("~/Content/themes/base/css")
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://code.jquery.com/ui/1.10.3/themes/sunny/jquery-ui.css">
+    <link rel="stylesheet" href="https://cdn.datatables.net/plug-ins/9dcbecd42ad/integration/jqueryui/dataTables.jqueryui.css">
+    <link rel="stylesheet" href="https://cdn.datatables.net/buttons/1.2.4/css/buttons.dataTables.min.css">
+    <link rel="stylesheet" href="https://cdn.datatables.net/tabletools/2.2.4/css/dataTables.tableTools.min.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/chosen/1.6.2/chosen.min.css" />
+    <link rel="icon" href="https://cdnjs.cloudflare.com/ajax/libs/chosen/1.6.2/chosen.min.css.map" type="application/octet-stream" />
+    <link type="image/png" href="https://cdnjs.cloudflare.com/ajax/libs/chosen/1.6.2/chosen-sprite.png" rel="shortcut icon" />
+    <style type="text/css">
+        .buttons-excel, .buttons-pdf, .buttons-csv, .buttons-print, .buttons-copy {
+            padding: 10px;
+            margin-left: 10px;
+            background-color: rgba(0, 38, 255, 0.86);
+            color: #FFFDFD;
+            border-radius: 3px;
+            box-shadow: red 4px 4px -1px 2px;
+        }
+
+            .buttons-excel:hover, .buttons-pdf:hover, .buttons-csv:hover, .buttons-print:hover {
+                background-color: red;
+                color: blue;
+                cursor: pointer;
+            }
+    
+    .fa {
+        margin-right: 3px;
+        font-size: 20px;
+        /*color: rgba(88, 243, 12, 0.96);*/
+    }
+    </style>
+    @RenderSection("style", required:false)
+</head>
+<body>
+    <div class="navbar navbar-inverse  navbar-fixed-top">
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                @Html.ActionLink("Asset Management System", "Index", "Home", null, new { @class = "navbar-brand" })
+            </div>
+            <div class="navbar-collapse collapse">
+                <ul class="nav navbar-nav">
+                    <li>@Html.ActionLink("Home", "Index", "Home")</li>
+                    <li class="dropdown">
+                        <a data-toggle="dropdown" class="dropdown-toggle">Masters<b class="caret"></b></a>
+                        <ul class="dropdown-menu">
+                            <li><a href="~/Make/Index">Make</a></li>
+                            <li><a href="~/Model/Index">Model</a></li>
+                            <li><a href="~/Classification/Index">Classification</a></li>
+                            <li><a href="~/AssetLocation/Index">Asset Location</a></li>
+                            <li><a href="~/Accessory/Index">Accessory</a></li>
+                        </ul>
+                    </li>
+                    <li class="dropdown">
+                        <a data-toggle="dropdown" class="dropdown-toggle">Entry<b class="caret"></b></a>
+                        <ul class="dropdown-menu">
+                            <li><a href="~/CPUEntry/Index">CPU</a></li>
+                            <li><a href="~/MonitorEntry/Index">Monitor</a></li>
+                            <li><a href="~/Keyboard/Index">Keyboard</a></li>
+                            <li><a href="~/Mouse/Index">Mouse</a></li>
+                        </ul>
+                    </li>
+                    <li class="dropdown">
+                        <a data-toggle="dropdown" class="dropdown-toggle">Location<b class="caret"></b></a>
+                        <ul class="dropdown-menu">
+                            <li><a href="~/location/SwapLocationAssets">Swap Location</a></li>
+                            <li><a href="~/location/Index">Locatin Details</a></li>
+                        </ul>
+                    </li>
+                    <li>@Html.ActionLink("About", "About", "Home")</li>
+                    @*<li>@Html.ActionLink("Contact", "Contact", "Home")</li>*@
+                </ul>
+                @Html.Partial("_LoginPartial")
+            </div>
+        </div>
+    </div>
+    <div class="container body-content">
+        @RenderBody()
+        <hr />
+       
+    </div>
+    <footer>
+        <p style="text-align:center;">&copy; @DateTime.Now.Year - Asset Management System</p>
+    </footer>
+    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    @Scripts.Render("~/bundles/bootbox")  
+    @Scripts.Render("~/bundles/jqueryui")
+    <script type="text/javascript" src="https://cdn.datatables.net/r/dt/jq-2.1.4,jszip-2.5.0,pdfmake-0.1.18,dt-1.10.9,af-2.0.0,b-1.0.3,b-colvis-1.0.3,b-html5-1.0.3,b-print-1.0.3,se-1.0.1/datatables.min.js"></script>
+    <script src="https://cdn.datatables.net/tabletools/2.2.4/js/dataTables.tableTools.min.js"></script>    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/chosen/1.6.2/chosen.jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/chosen/1.6.2/chosen.jquery.min.js.map"></script>
+    @Scripts.Render("~/bundles/datatables")
+    @RenderSection("scripts", required: false)
+</body>
+</html>

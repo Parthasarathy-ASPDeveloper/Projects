@@ -1,0 +1,274 @@
+﻿@model IEnumerable<AssetsMVC.Models.KeyboardEntryDisplay>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@section style{
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons"
+      rel="stylesheet">
+<link href="~/CustomStyleSheets/ResponsiveTable.css" rel="stylesheet" />
+<style type="text/css">
+    .div-scroll {
+        overflow: scroll;
+        max-height: 500px;
+        max-width: 100%;
+        width: 100%;
+    }
+
+    .Delete {
+        background-color: #F44336;
+        text-decoration: none;
+        padding: 5px 5px;
+        border: 1px solid red;
+        border-radius: 3px;
+        color: white;
+        font-family: Arial;
+    }
+
+        .Delete:hover {
+            background-color: #F44336;
+        }
+
+    .Edit {
+        background-color: yellowgreen;
+        text-decoration: none;
+        padding: 5px 5px;
+        border: 1px solid red;
+        border-radius: 3px;
+        color: white;
+    }
+
+        .Edit:hover {
+            background-color: yellowgreen;
+        }
+
+    .Details {
+        background-color: blue;
+        text-decoration: none;
+        padding: 5px 5px;
+        border: 1px solid red;
+        border-radius: 3px;
+        color: white;
+    }
+
+        .Details:hover {
+            background-color: blue;
+        }
+
+    #search {
+        background-image: url("/Resources/search.png");
+        background-position-x: 5px;
+        background-position-y: center;
+        padding-left: 30px;
+        background-repeat: no-repeat;
+        border: 1px solid black;
+        border-radius: 3px;
+        float: right;
+        margin-right: 1%;
+        margin-bottom: 10px;
+    }
+</style>
+}
+<script type="text/javascript" src="~/CustomScripts/QuickSearch.js"></script>
+<div style="background-color: rgba(185, 243, 246, 0.41); padding-bottom: 20px; height: 600px;">
+    <h2 style="background-color: #191717; color: white; padding: 10px 5px;">Keyboard Entry List</h2>
+
+    @*<div class="editor-labeltype">
+            <input type="text" id="search" placeholder="Search" />
+        </div>*@
+
+
+    <p style="margin-left:10px;">
+        @Html.ActionLink("Create New", "Create") | @Html.ActionLink("Import", "Import")
+    </p>
+    <div style="margin-left: 10px; margin-bottom: 10px; max-height: 450px; width:98%; overflow: auto; ">
+
+        <table class="table-responsive table" id="tblCPUIndex">
+            <thead>
+                <tr>
+                    <th>
+                        SNo
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.asset_id)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.assetLocation_id)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.make_id)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.model_id)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.productnumber)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.serialnumber)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.assetowner)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Type)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.classification_id)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.warranty)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.warrantyupto)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.remarks)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.active)
+                    </th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                @{int SNo = 0;}
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>
+                            @{SNo = SNo + 1;}
+                            @SNo
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.asset_id)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.assetLocation_id)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.make_id)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.model_id)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.productnumber)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.serialnumber)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.assetowner)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Type)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.classification_id)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.warranty)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.warrantyupto)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.remarks)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.active)
+                        </td>
+                        <td>
+                            @*@Html.ActionLink("Edit", "Edit", new { id = item.id }) |
+                            @Html.ActionLink("Details", "Details", new { id = item.id }) |
+                            @Html.ActionLink("Delete", "Delete", new { id = item.id })*@
+                            <a href="@Url.Action("Edit", new { id =item.id })" style="text-decoration:none"><span><i class="fa fa-pencil-square-o" aria-hidden="true"></i></span></a>
+                            <a href="@Url.Action("Details", new { id =item.id })" style="text-decoration:none"><span><i class="fa fa-eye" aria-hidden="true"></i></span></a>
+                            <a href="@Url.Action("Delete", new { id = item.id }) " style="text-decoration:none"><span><i class="fa fa-trash" aria-hidden="true"></i></span></a>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+    @using (Html.BeginForm("ExportData", "CPUEntry", FormMethod.Post))
+    {
+        @Html.AntiForgeryToken()
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Export to Excel" class="btn btn-default" style="float:right;" />
+            </div>
+        </div>
+    }
+</div>
+@section scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+    @Scripts.Render("~/bundles/jqueryui")
+    @Styles.Render("~/Content/themes/base/css")
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $('#search').keyup(function () {
+                searchTable($(this).val(), "#tblCPUIndex");
+            });
+
+            var tables = $("#tblCPUIndex").dataTable({
+                "processing": true,
+                "dom": 'lBfrtip',
+                buttons: [
+                     {
+                         extend: 'pdf',
+                         footer: false,
+                         orientation: 'landscape',
+                         title: 'Keyboard-Data',
+                         exportOptions: {
+                             columns: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]
+                         }
+                     },
+       {
+           extend: 'csv',
+           footer: false,
+           exportOptions: {
+               columns: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]
+           }
+
+       },
+
+       {
+           extend: 'excel',
+           footer: false,
+           filename: 'Keyboards-Asset Management System.xls',
+           title: 'Keyboard-Data',
+           exportOptions: {
+               columns: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]
+           }
+
+       },
+        {
+            extend: 'print',
+            footer: false,
+            exportOptions: {
+                columns: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]
+            }
+        },
+          {
+              extend: 'copy',
+              footer: false,
+              exportOptions: {
+                  columns: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]
+              }
+          }
+                ]
+
+            });
+            var tabletools = new $.fn.dataTable.TableTools(tables, {
+                'sSwfPath': '//cdn.datatables.net/tabletools/2.2.4/swf/copy_csv_xls_pdf.swf'
+            }
+              );
+            //$(tabletools.fnContainer()).insertBefore('#tblCPUIndex');
+        });
+
+    </script>
+}

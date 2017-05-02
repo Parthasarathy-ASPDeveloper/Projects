@@ -1,0 +1,183 @@
+﻿@model AssetsMVC.Models.cpuEntyImport
+
+@{
+    ViewBag.Title = "Import";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@section style{
+<style type="text/css">
+    .textarea {
+        width: 70%;
+        height: 400px;
+        max-width: 600px;
+        max-height: 600px;
+    }
+    #preview{
+        overflow:scroll;
+        max-height:500px;
+        max-width:100%;
+        width:100%;
+    }
+    .status-spec {
+        width: 100px;
+        height: auto;
+        text-align: center;
+        text-rendering: geometricPrecision;
+        border: 1px solid red;
+        display: inline;
+        color: whitesmoke;
+        margin: 10px 10px;
+        font-size: 1.0em;
+        font-family: Arial;
+        padding: 10px 10px; vertical-align: middle;
+    }
+</style>
+<link href="~/CustomStyleSheets/PreviewTable.css" rel="stylesheet" />
+}
+
+@{
+    if (ViewBag.Message != null)
+    {
+        <script type="text/javascript">
+            $(document).ready(function(){
+                @*alert("@ViewBag.Message");*@
+                bootbox.alert({
+                    message: "@ViewBag.Message",
+                    className: 'bb-alternate-modal'
+                });
+            });
+
+        </script>
+    }
+}
+
+
+            <div style="background-color: #CFEFFC; padding-bottom: 20px; ">
+                <div>
+                    <h2 style="background-color: brown; color:white; padding:10px 5px;">Import CPU Data</h2>
+                    <div style="float:right;margin-right:40px;">
+                        <input type="button" value="Preview" onclick="javascript:generateTable()" class="btn btn-default" />
+                    </div>
+                </div>
+
+
+                <div style="margin:10px; margin-bottom:10px;">
+                    @using (Html.BeginForm())
+        {
+            @Html.AntiForgeryToken()
+
+            <div class="form-horizontal">
+                            <h4>Copy & Paste excel data into TextArea</h4>
+                            <hr />
+            @Html.ValidationSummary(true)
+
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.getData, new { @class = "control-label col-md-2" })
+                        <div class="col-md-10">
+                            @Html.TextAreaFor(model => model.getData, new { @class = "textarea" })
+                            @Html.ValidationMessageFor(model => model.getData)
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <div class="col-md-offset-2 col-md-10">
+                            <input type="submit" value="Create" class="btn btn-default" />
+                        </div>
+                    </div>
+                </div>
+        }
+
+                <div>
+                    <h1 style="background:rgba(93, 124, 245, 0.69);">Table Preview</h1> 
+                    <div class="status-spec" style="background-color:red;">Duplicate Entry</div>
+                    <div class="status-spec" style="background-color:purple;">Already available</div>
+                    <div class="status-spec" style="background-color:green;">Empty Row</div>
+                    <div class="status-spec" style="background-color:blue;">Element Missing</div>
+                </div>
+                </div>
+                <div id="preview">
+                   
+
+                </div>
+            </div>
+
+@section scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/jqueryui")
+    @Styles.Render("~/Content/themes/base/jquery.ui.datepicker.css")
+    @Styles.Render("~/Content/themes/base/jquery.ui.autocomplete.css")
+    @Styles.Render("~/Content/themes/base/jquery-ui.css")
+
+    <script type="text/javascript">
+        $(document).ready(function () {
+
+        });
+        function generateTable() {
+            var data = $('#getData').val();
+            console.log(data);
+            var rows = data.split("\n");
+            var table = $('<table />');
+            var count = 0;
+            var array = new Array();
+            var header = "<tr class='header'><th>SNo</th><th>Asset ID</th><th>Asset Location</th><th>System Model</th><th>Serial Number</th><th>Product Number</th><th>Make</th><th>Configuration</th><th>Asset owner</th><th>Asset Classification</th><th>Warranty</th><th>Warranty UP To</th><th>Remarks</th> </tr>";
+            table.append(header);
+            for (var y in rows) {
+                var cells = rows[y].split("\t");
+                var row = $('<tr />');
+                array[count] = cells[1];
+                count++;
+                for (var x in cells) {
+                    cells[x] = cells[x].replace(/(\r\n|\n|\r|\n)/g, "");
+                    row.append('<td>' + cells[x] + '</td>');
+         
+                }
+                if (row.children('td').length == 1) {
+                    $(row.children('td')).css('background-color', 'Green');
+                }
+                else if (row.children('td').length < 12) {
+                    $(row.children('td')).css('background-color', 'blue');
+                }
+                else if (row.children('td').length == 13) {
+                    for (var i = 0; i <= array.length - 1; i++) {
+                        for (var j = i + 1; j <= array.length - 1; j++) {
+                            alert(array[i]); alert(array[j]);
+                            if (array[i] == array[j]) {
+                                $(row.children('td')).css('background-color', 'purple');
+
+                            }
+                        }
+                    }
+
+                }
+                    
+                     $.ajax(
+                        {
+                            url: '@Url.Action("ajaxCheckDuplicate","CPUEntry")',
+                            type: 'POST',
+                            data: '{"cell":"' + $(row).find('td:eq(1)').text() + '"}',
+                            contentType: 'application/json; charset=utf-8',
+                            success: function (data) {
+                                if (data == 'True') {
+                                    $(row.children('td')).css('background-color', 'red');
+                                }
+
+                            },
+                            failure: function (fail) {
+                                alert('failure');
+                            },
+                            error: function (e) {
+                                alert(e.responseText)
+                            }
+                        });
+                
+                table.append(row);
+            }
+
+            // Insert into DOM
+            $('#preview').html(table);
+        }
+
+    </script>
+}
+

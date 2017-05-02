@@ -1,0 +1,65 @@
+﻿@model Assets_MVC_.Models.mas_model
+
+@{
+    ViewBag.Title = "Delete";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Delete</h2>
+
+<h3>Are you sure you want to delete this?</h3>
+<div>
+    <h4>mas_model</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.model)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.model)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.make_id)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.make_id)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.configuration)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.configuration)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.accessoryId)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.accessoryId)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.active)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.active)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Delete" class="btn btn-default" /> |
+            @Html.ActionLink("Back to List", "Index")
+        </div>
+    }
+</div>

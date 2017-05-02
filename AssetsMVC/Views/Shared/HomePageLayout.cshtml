@@ -1,0 +1,93 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title - Asset Management System - Application</title>
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+    <!-- Bootstrap core CSS -->
+    <link href="@Url.Content("~/css/carousel.css")" rel="stylesheet">
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/chosen/1.6.2/chosen.min.css" />
+    <link rel="icon" href="https://cdnjs.cloudflare.com/ajax/libs/chosen/1.6.2/chosen.min.css.map" type="application/octet-stream" />
+    <link type="image/png" href="https://cdnjs.cloudflare.com/ajax/libs/chosen/1.6.2/chosen-sprite.png" rel="shortcut icon" />
+
+    @RenderSection("style", required:false)
+    <style type="text/css">
+        .fa {
+            margin-right: 3px;
+            font-size: 20px;
+            /*color: rgba(88, 243, 12, 0.96);*/
+        }
+    </style>
+</head>
+<body>
+    <div class="navbar navbar-inverse  navbar-fixed-top">
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                @Html.ActionLink("Asset Management System", "Index", "Home", null, new { @class = "navbar-brand" })
+            </div>
+            <div class="navbar-collapse collapse">
+                <ul class="nav navbar-nav">
+                    <li>@Html.ActionLink("Home", "Index", "Home")</li>
+                    <li class="dropdown">
+                        <a data-toggle="dropdown" class="dropdown-toggle">Masters<b class="caret"></b></a>
+                        <ul class="dropdown-menu">
+                            <li><a href="~/Make/Index">Make</a></li>
+                            <li><a href="~/Model/Index">Model</a></li>
+                            <li><a href="~/Classification/Index">Classification</a></li>
+                            <li><a href="~/AssetLocation/Index">Asset Location</a></li>
+                            <li><a href="~/Accessory/Index">Accessory</a></li>
+                        </ul>
+                    </li>
+                    <li class="dropdown">
+                        <a data-toggle="dropdown" class="dropdown-toggle">Entry<b class="caret"></b></a>
+                        <ul class="dropdown-menu">
+                            <li><a href="~/CPUEntry/Index">CPU</a></li>
+                            <li><a href="~/MonitorEntry/Index">Monitor</a></li>
+                            <li><a href="~/Keyboard/Index">Keyboard</a></li>
+                            <li><a href="~/Mouse/Index">Mouse</a></li>
+                        </ul>
+                    </li>
+                    <li class="dropdown">
+                        <a data-toggle="dropdown" class="dropdown-toggle">Location<b class="caret"></b></a>
+                        <ul class="dropdown-menu">
+                            <li><a href="~/location/SwapLocationAssets">Swap Location</a></li>
+                            <li><a href="~/location/Index">Locatin Details</a></li>
+                        </ul>
+                    </li>
+                    <li>@Html.ActionLink("About", "About", "Home")</li>
+                    @*<li>@Html.ActionLink("Contact", "Contact", "Home")</li>*@
+                </ul>
+                @Html.Partial("_LoginPartial")
+            </div>
+        </div>
+    </div>
+    <div>
+        @Scripts.Render("~/bundles/jquery")
+
+        @RenderBody()
+        <hr />
+    </div>
+    <footer>
+        <p style="text-align:center;">&copy; @DateTime.Now.Year - Asset Management System</p>
+    </footer>
+    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    @Scripts.Render("~/bundles/bootbox")
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/chosen/1.6.2/chosen.jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/chosen/1.6.2/chosen.jquery.min.js.map"></script>
+    @RenderSection("scripts", required: false)
+</body>
+</html>

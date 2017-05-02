@@ -1,0 +1,94 @@
+﻿@model IEnumerable<AssetsMVC.Models.AccessoriesDisplay>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h1>Asset Location Details</h1>
+
+        @Html.DropDownList("Location", new SelectList((System.Collections.IEnumerable)ViewData["AssetLocation"], "Value", "Text"), "--- Select Location---", new { @id = "Location", @class = "chosen-select" })
+        <input type="button" id="submit" value="Get Details" class="btn-info btn" />
+
+<div class="col-md-offset-2 col-md-10">
+
+    </div>
+    @*<p>
+            @Html.ActionLink("Create New", "Create")
+        </p>*@
+    <table class="table-striped table-hover table-responsive table clearfix" id="tblAssets">
+        <tr>
+            <th>
+                @Html.DisplayName("Asset Name")
+            </th>
+            <th>
+                @Html.DisplayName("Asset Id")
+            </th>
+            <th>
+                @Html.DisplayName("Make")
+            </th>
+            <th>
+                @Html.DisplayName("Model")
+            </th>
+            <th>
+                @Html.DisplayName("Owner")
+            </th>
+            <th>
+                @Html.DisplayName("Classification")
+            </th>
+            <th>
+                @Html.DisplayName("Configuration")
+            </th>
+            <th></th>
+        </tr>
+        <tbody id="body"></tbody>
+    </table>
+@section style{
+
+<link href="~/CustomStyleSheets/style.css" rel="stylesheet" />
+    <style type="text/css">
+        #tblAssets {
+            display: none;
+        }
+    </style>
+ }
+
+    @section scripts {
+        @Scripts.Render("~/bundles/jqueryval")
+        @Scripts.Render("~/bundles/jqueryui")
+        @Styles.Render("~/Content/themes/base/jquery-ui.css")
+
+        <script type="text/javascript">
+            $(document).ready(function () {
+                $(".chosen-select").chosen({ no_results_text: "Oops, nothing found!" });//Chosen Plugin Initialized.
+                $("#submit").click(function () {
+
+                    $('#tblAssets').css('display', 'block');
+                    $.ajax(
+                    {
+                        url: '@Url.Action("GetTable", "Location")',
+                        type: 'POST',
+                        data: "{'location':'" + $('#Location').val() + "'}",
+                        contentType: 'application/json; charset=utf-8',
+                        success: function (data) {
+                            var row = "";
+                            $.each(data, function (index, item) {
+                                row += "<tr><td>" + item.name + "</td><td><a href ="+ item.alink +">" + item.asset_id + "</a></td><td>" + item.make + "</td><td>" + item.model + "</td><td>" + item.owner + "</td><td>" + item.classification + "</td><td>" + item.configuration + "</td><td></tr>";
+                            });
+                            $('#body').html(row);
+                        },
+                        error: function (response) {
+                            alert("error");
+                            alert(response.responseText);
+                        },
+                        failure: function () {
+                            alert("failed");
+                        }
+                    });
+                });
+
+
+
+            })
+        </script>
+    }

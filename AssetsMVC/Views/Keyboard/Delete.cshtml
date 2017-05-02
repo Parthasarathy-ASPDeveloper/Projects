@@ -1,0 +1,137 @@
+﻿@model Assets_MVC_.Models.keyboardentry16
+
+@{
+    ViewBag.Title = "Delete";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Delete <small style="color:magenta;">Keyboard @Model.asset_id (@Model.assetLocation_id)</small></h2>
+
+<h3>Are you sure you want to delete this?</h3>
+<div>
+    <h4>keyboardentry16</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.asset_id)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.asset_id)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.assetLocation_id)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.assetLocation_id)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.make_id)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.make_id)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.model_id)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.model_id)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.productnumber)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.productnumber)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.serialnumber)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.serialnumber)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.assetowner)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.assetowner)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Type)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Type)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.classification_id)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.classification_id)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.warranty)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.warranty)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.warrantyupto)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.warrantyupto)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.remarks)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.remarks)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.lastedit)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.lastedit)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.active)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.active)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Delete" class="btn btn-default" /> |
+            @Html.ActionLink("Back to List", "Index")
+        </div>
+    }
+</div>
