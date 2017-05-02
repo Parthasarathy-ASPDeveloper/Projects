@@ -27,6 +27,10 @@ namespace AssetsMVC.Controllers
     
             return View(chart);
         }
+        public ActionResult testpage1()
+        {
+            return View();
+        }
         public ActionResult Charts()
         {
             var chart = ChartItems().ToList();
