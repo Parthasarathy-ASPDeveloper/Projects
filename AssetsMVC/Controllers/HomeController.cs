@@ -29,6 +29,7 @@ namespace AssetsMVC.Controllers
         }
         public ActionResult testpage1()
         {
+            int i = 0;
             return View();
         }
         public ActionResult Charts()
