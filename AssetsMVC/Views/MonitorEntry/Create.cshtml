@@ -4,9 +4,12 @@
     ViewBag.Title = "Create";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
+@section style{
+    <link href="~/CustomStyleSheets/style.css" rel="stylesheet" />
+}
+
 <h1>Create</h1>
 <small>New Monitor Entry</small>
-<link href="~/CustomStyleSheets/style.css" rel="stylesheet" />
 @using (Html.BeginForm())
 {
     @Html.AntiForgeryToken()

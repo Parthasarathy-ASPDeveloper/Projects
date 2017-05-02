@@ -78,11 +78,18 @@ namespace AssetsMVC.Controllers
         {
             if (ModelState.IsValid)
             {
-                var user = new ApplicationUser() { UserName = model.UserName };
+                var user = new ApplicationUser()
+                {
+                    UserName = model.UserName,
+                    Name = model.Name,
+                    EmpId = model.EmpId,
+                    Mobile = model.Mobile,
+                    Address = model.Address
+                };
                 var result = await UserManager.CreateAsync(user, model.Password);
                 if (result.Succeeded)
                 {
-                    await SignInAsync(user, isPersistent: false);
+                    //await SignInAsync(user, isPersistent: false);
                     return RedirectToAction("Index", "Home");
                 }
                 else
@@ -319,7 +326,7 @@ namespace AssetsMVC.Controllers
             base.Dispose(disposing);
         }
 
-     
+
 
 
         #region Helpers

@@ -45,6 +45,11 @@ namespace AssetsMVC.Models
 
     public class RegisterViewModel
     {
+        [Required(ErrorMessage = "Name field is required.")]
+        [Display(Name = "Name")]
+        public string Name { get; set; }
+
+
         [Required]
         [Display(Name = "User name")]
         public string UserName { get; set; }
@@ -59,5 +64,17 @@ namespace AssetsMVC.Models
         [Display(Name = "Confirm password")]
         [Compare("Password", ErrorMessage = "The password and confirmation password do not match.")]
         public string ConfirmPassword { get; set; }
+
+        [Display(Name = "Employee Id")]
+        public string EmpId { get; set; }
+
+        [Display(Name = "Mobile No.")]
+        public string Mobile { get; set; }
+
+        [DataType(DataType.MultilineText)]
+        [Display(Name = "Address")]
+        public string Address { get; set; }
+
+
     }
 }

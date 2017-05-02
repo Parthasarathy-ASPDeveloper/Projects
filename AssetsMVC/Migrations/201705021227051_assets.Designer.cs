@@ -7,13 +7,13 @@ namespace AssetsMVC.Migrations
     using System.Resources;
     
     [GeneratedCode("EntityFramework.Migrations", "6.0.0-20911")]
-    public sealed partial class initial : IMigrationMetadata
+    public sealed partial class assets : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(initial));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(assets));
         
         string IMigrationMetadata.Id
         {
-            get { return "201702281055429_initial"; }
+            get { return "201705021227051_assets"; }
         }
         
         string IMigrationMetadata.Source

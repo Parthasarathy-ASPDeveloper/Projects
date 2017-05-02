@@ -9,7 +9,7 @@ namespace AssetsMVC.Migrations
     {
         public Configuration()
         {
-            AutomaticMigrationsEnabled = false;
+            AutomaticMigrationsEnabled = true;
         }
 
         protected override void Seed(Assets_MVC_.Models.AssetsDBContext context)
@@ -26,12 +26,6 @@ namespace AssetsMVC.Migrations
             //      new Person { FullName = "Rowan Miller" }
             //    );
             //
-            context.mas_Accessory.AddOrUpdate(m => m.accessory,
-                new Assets_MVC_.Models.mas_accessory { accessory = "CPU", active = true },
-                new Assets_MVC_.Models.mas_accessory { accessory = "MONITOR", active = true },
-                new Assets_MVC_.Models.mas_accessory { accessory = "MOUSE", active = true },
-                new Assets_MVC_.Models.mas_accessory { accessory = "KEYBOARD", active = true }
-                );
         }
     }
 }
